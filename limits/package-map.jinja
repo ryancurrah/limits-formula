@@ -1,0 +1,16 @@
+{% set package_table = {
+    'Debian':  {'pam': 'pam'},
+    'Ubuntu':  {'pam': 'pam'},
+    'CentOS':  {'pam': 'pam'},
+    'Fedora':  {'pam': 'pam'},
+    'RedHat':  {'pam': 'pam'},
+    'Amazon':  {'pam': 'pam'},
+    'Gentoo':  {'pam': 'sys-libs/pam'},
+    'Mint':    {'pam': 'pam'}
+} %}
+
+{% if 'package_table' in pillar %}
+    {% set pkgs = pillar['package_table'] %}
+{% elif grains['os'] in package_table %}
+    {% set pkgs = package_table[grains['os']] %}
+{% endif %}
