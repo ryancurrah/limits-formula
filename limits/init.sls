@@ -1,4 +1,4 @@
-{% from "limits/package-map.jinja" import pkgs with context %}
+{% from "limits/map.jinja" import pkgs with context %}
 
 pam:
   pkg.installed:
