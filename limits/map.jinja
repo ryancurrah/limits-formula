@@ -1,12 +1,12 @@
 {% set package_table = {
-    'Debian':  {'pam': 'pam'},
-    'Ubuntu':  {'pam': 'pam'},
+    'Debian':  {'pam': 'login'},
+    'Ubuntu':  {'pam': 'login'},
     'CentOS':  {'pam': 'pam'},
     'Fedora':  {'pam': 'pam'},
     'RedHat':  {'pam': 'pam'},
     'Amazon':  {'pam': 'pam'},
     'Gentoo':  {'pam': 'sys-libs/pam'},
-    'Mint':    {'pam': 'pam'}
+    'Mint':    {'pam': 'login'}
 } %}
 
 {% if 'package_table' in pillar %}
