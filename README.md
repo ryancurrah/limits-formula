@@ -20,6 +20,7 @@ limit to user login sessions. This description of the configuration file syntax 
 * Amazon
 * Gentoo
 * Mint
+* SUSE
 
 ## Contributors
 
