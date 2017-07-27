@@ -26,4 +26,5 @@ limit to user login sessions. This description of the configuration file syntax 
 
 * danoe
 * tampakrap
+* cboltz
 
