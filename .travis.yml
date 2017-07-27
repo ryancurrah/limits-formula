@@ -1,0 +1,34 @@
+language: python
+python:
+  - "2.7"
+
+# command to install dependencies
+before_install:
+  - sudo apt-get install software-properties-common
+  - sudo apt-add-repository -y ppa:brightbox/ruby-ng
+  - sudo apt-get update
+  - sudo apt-get install ruby2.3 rsync
+  - sudo gem install serverspec rake
+  - sudo curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com
+  - sudo sh bootstrap-salt.sh
+
+install:
+  # Copy state, pillar and minion conf
+  - sudo mkdir -p /srv/salt/states /srv/pillar
+  - sudo rsync -av . /srv/salt/states/ --exclude .git
+  - sudo cp .travis/minion /etc/salt/minion
+  - sudo cp .travis/state_top.sls /srv/salt/states/top.sls
+  - sudo cp .travis/pillar_top.sls /srv/pillar/top.sls
+  - sudo cp pillar.example /srv/pillar/pillar.sls
+  - sudo service salt-minion restart
+
+  # Additional debug help
+  - sudo cat /var/log/salt/*
+
+  # See what kind of travis box you're on
+  - sudo salt-call grains.items --local
+
+# command to run tests
+script:
+  - sudo salt-call state.highstate --local --retcode-passthrough
+  - sudo rake spec
