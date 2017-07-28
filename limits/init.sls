@@ -8,7 +8,7 @@ pam:
   file.managed:
     - user: root
     - group: root
-    - mode: 440
+    - mode: 644
     - template: jinja
     - source: salt://limits/files/limits.conf
     - require:
